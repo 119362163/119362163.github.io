@@ -1,0 +1,11 @@
+table {
+  font-family: candara;
+  font-size: 150%;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  text-align: left;
+  padding: 8px;
+}

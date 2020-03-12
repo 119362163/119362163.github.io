@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<!-- Declaring the language for the website to English -->
+<html lang="en">
+
+<head>
+	<!-- Naming the website title "Our Services" -->
+	<title>Ebusiness</title>
+	
+	<!-- Declaring that Notepad must use the CSS file stored for the design of the website -->
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	
+</head>
+
+<body>
+	<!-- Declaring this div element as class "header" -->
+	<div class="header">
+		<!-- Setting the font size for our header to the largest font size available -->
+		<h1><font face="Helvetica">T Y P E T E C H</font></h1>
+		<!-- Using the paragraph block level element to welcome the website users to the front page -->
+		<p><font face="Helvetica">I.T. Consulting Services</font></p>
+		<i class="material-icons" style="font-size:60px;color:lightblue;text-shadow:2px 2px 4px #000000;">cloud</i>
+	</div>
+	
+	<!-- Declaring this div element as class "topnav" -->
+	<div class="topnav"><font face="Candara">
+		<!-- Providing links to specific webpages on the top navigation tab bar -->
+		<a href="file:///C:/First%20Year/Semester%202/IS1113/Web%20Project/Home%20Page.html">Home</a> <!-- Link to the Home Page -->
+		<a href="file:///C:/First%20Year/Semester%202/IS1113/Web%20Project/CV.html">Curriculum Vitae</a> <!-- Link to Curriculum Vitae page-->
+		<a href="file:///C:/First%20Year/Semester%202/IS1113/Web%20Project/About%20Me.html">About Me</a> <!-- Link to About Me page -->
+		<a href="file:///C:/First%20Year/Semester%202/IS1113/Web%20Project/Consulting%20Services.html">About Consulting</a> <!-- Link to Consulting Services page -->
+		<a href="file:///C:/First%20Year/Semester%202/IS1113/Web%20Project/Ebus1.html">Ebusiness</a> <!-- Link to the Our Services page -->
+	</font></div>
+	
+	<br />
+	<br />
+	<br />
+	
+	<!-- Declaring this div element and aligning it to the center of the page -->
+	<div align="center"><ul>
+		<!-- Setting the font size for the heading "Select a Consulting Service" as h1 -->
+		<h1><font face="Candara">Select a Consulting Service</font></h1>
+		<!-- Inserting a horizontal line under the title "Curriculum Vitae" -->
+		<hr width="25%" size="3" align="center" />
+	</ul></div>
+	
+	<!-- Inserting the calculator for the consulting services -->
+	<center>
+        <div class="form"><font face="Candara" style="font-size:120%;">
+            <form name="intCalc" method="post" action="eBus2.php">
+        <center>
+            <table cellspacing="20">
+                <tr>
+                    <td>&emsp;&emsp;Hyper-automation $200 (excl. VAT)</td>
+                    <td><input type="radio" id="Hyperautomation" name="rdoGroup" value="200"  required /></td>
+                </tr>
+                <tr>
+                    <td>&emsp;&emsp;Multi-experience $500 (excl. VAT)</td>
+                    <td><input type="radio" id="Multiexperience" name="rdoGroup" value="500"  /></td>
+                </tr>
+                <tr>
+                    <td>&emsp;&emsp;Distributed Cloud $1,000 (excl. VAT)</td>
+                    <td><input type="radio" id="DistributedCloud" name="rdoGroup" value="1000" /></td>
+                </tr>
+            </table>
+        </center>
+        <br/>
+            <center>
+                 <table cellspacing="10">
+                <tr>
+                    <td>Sub Total</td>
+                    <td><input type="text" id="txtSubTot" name="txtSub" readonly  required/></td>
+                </tr>
+                <tr>
+                    <td>Discount @ 5%: </td>
+                    <td><input type="text" id="txtDisc" name="txtDisc" readonly  required/></td>
+                </tr>
+                <tr>
+                    <td>+ VAT @ 20%: </td>
+                    <td><input type="text" id="txtVAT" name="txtVAT" readonly required /></td>
+                </tr>
+                <tr>
+                    <td>Total: </td>
+                    <td><input type="text" id="txtTotal" name="txtTotal" value="" readonly required/></td>
+                </tr>
+            </table>
+        </center>
+       
+        <br />
+		<br />
+		
+            <center>
+            <input type="button" name="btnCalc" id="btnCalc" onclick="calcSub()" value="Calculate Amount"/>
+            <input type="reset" name="btnClear" id="btnClear" value="Clear"/>
+           
+           
+        </center>
+            </form>
+        </font></div>
+        </center>
+		
+            <script type="text/javascript">
+              function calcSub(){
+                    var argSelection = parseFloat(document.getElementById('txtSubTot').value);
+                    var Hyperautomation = parseFloat(document.getElementById('Hyperautomation').value);
+                    var Multiexperience = parseFloat(document.getElementById('Multiexperience').value);
+                    var DistributedCloud = parseFloat(document.getElementById('DistributedCloud').value);
+                   
+                   
+                    if (document.getElementById('Hyperautomation').checked) {
+                        document.intCalc.txtSubTot.value = Hyperautomation;
+                        argSelection = Hyperautomation;
+                        calcVatTotal(argSelection);
+                       
+                    }
+                   else if (document.getElementById('Multiexperience').checked) {
+                        document.intCalc.txtSubTot.value = Multiexperience;
+                        argSelection = Multiexperience;
+                        calcVatTotal(argSelection);
+                       
+                    }
+                    else if (document.getElementById('DistributedCloud').checked) {
+                        document.intCalc.txtSubTot.value = DistributedCloud;
+                        argSelection = DistributedCloud;
+                        calcVatTotal(argSelection);
+                    }
+                }
+               
+               
+                function calcVatTotal(parmSelection) {
+                    var argsubTotal = parseFloat(parmSelection);
+                    var argdiscountAmt = parseFloat(argsubTotal * .05);
+                    var argvatAmt = parseFloat(argsubTotal * .20);    
+                    var argtotalPrice = parseFloat(argsubTotal - argdiscountAmt + argvatAmt);
+                   calcDisp(argsubTotal, argdiscountAmt,argvatAmt,argtotalPrice);
+                   
+                 
+                }
+
+function calcDisp(parmsubTotal, parmdiscountAmt, parmvatAmt, parmtotalPrice){
+document.intCalc.txtSubTot.value = parmsubTotal;
+document.intCalc.txtDisc.value = parmdiscountAmt;
+                    document.intCalc.txtVAT.value = parmvatAmt;
+                    document.intCalc.txtTotal.value = parmtotalPrice;
+}
+               
+               
+            </script>
+	
+</body>
+
+
+
+</html>
